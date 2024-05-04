@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AIFileAssistant", "AIFileAssistant.csproj", "{E4CB77CE-8801-4F96-A149-897C8EB48B92}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReadMeDaddy", "ReadMeDaddy.csproj", "{E4CB77CE-8801-4F96-A149-897C8EB48B92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
