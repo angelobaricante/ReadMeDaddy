@@ -15,6 +15,8 @@ namespace ReadMeDaddy
         public Form1()
         {
             InitializeComponent();
+
+            selectFileButton.BringToFront();
             var apiKey = LoadApiKey();
             if (string.IsNullOrEmpty(apiKey))
             {
@@ -23,6 +25,8 @@ namespace ReadMeDaddy
             }
             apiHandler = new ApiHandler(apiKey); // Ensure API key security
         }
+
+
 
         private string LoadApiKey()
         {
@@ -106,6 +110,21 @@ namespace ReadMeDaddy
             {
                 MessageBox.Show("Error updating file: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void taskInputTextBox_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void outputTextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
