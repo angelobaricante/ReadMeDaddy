@@ -56,7 +56,7 @@ namespace ReadMeDaddy
             {
                 filePath = openFileDialog.FileName;
                 fileLabel.Text = filePath; // Display selected file path
-                fileContent = FileOperations.ReadTextFromFile(filePath);
+                fileContent = FileOperations.ReadFile(filePath);
                 if (fileContent.StartsWith("Error reading file:") || fileContent.StartsWith("Unsupported file format."))
                 {
                     MessageBox.Show(fileContent, "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
