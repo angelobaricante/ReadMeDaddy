@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.fileLabel = new System.Windows.Forms.Label();
             this.processButton = new System.Windows.Forms.Button();
             this.taskInputTextBox = new System.Windows.Forms.TextBox();
@@ -43,7 +44,7 @@
             // fileLabel
             // 
             this.fileLabel.AutoSize = true;
-            this.fileLabel.ForeColor = System.Drawing.Color.White;
+            this.fileLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
             this.fileLabel.Location = new System.Drawing.Point(81, 516);
             this.fileLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.fileLabel.Name = "fileLabel";
@@ -84,11 +85,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Verdana", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Verdana", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(188)))), ((int)(((byte)(156)))));
-            this.label1.Location = new System.Drawing.Point(389, 47);
+            this.label1.Location = new System.Drawing.Point(375, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(368, 48);
+            this.label1.Size = new System.Drawing.Size(432, 57);
             this.label1.TabIndex = 6;
             this.label1.Text = "Read Me Daddy";
             // 
@@ -96,11 +97,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Verdana", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(470, 91);
+            this.label2.Location = new System.Drawing.Point(446, 91);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(197, 25);
+            this.label2.Size = new System.Drawing.Size(277, 34);
             this.label2.TabIndex = 7;
             this.label2.Text = "AI File Assistant";
             // 
@@ -152,6 +153,7 @@
             // richTextBox1
             // 
             this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.ForeColor = System.Drawing.Color.White;
             this.richTextBox1.Location = new System.Drawing.Point(85, 142);
@@ -175,11 +177,13 @@
             this.Controls.Add(this.richTextBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Read Me Daddy: AI File Assistant";
+            this.Load += new System.EventHandler(this.Form1_Load_1);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
