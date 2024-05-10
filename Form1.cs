@@ -4,12 +4,14 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using AIFileAssistant;
 using Newtonsoft.Json.Linq; // Ensure Newtonsoft.Json is installed via NuGet
 
 namespace ReadMeDaddy
 {
     public partial class Form1 : Form
     {
+        private Form2 settingsForm;
         private ApiHandler apiHandler;
         private string filePath; // To store the path of the file selected by the user
         private string fileContent; // To store the content of the file
@@ -18,6 +20,8 @@ namespace ReadMeDaddy
         {
             InitializeComponent();
             InitializeRichTextBox();
+            settingsForm = new Form2();
+            settingsButton.Click += SettingsButton_Click;
             var apiKey = LoadApiKey();
             if (string.IsNullOrEmpty(apiKey))
             {
@@ -95,7 +99,7 @@ namespace ReadMeDaddy
                 if (!string.IsNullOrEmpty(aiGeneratedContent))
                 {
                     AppendTextToChat("ReadMeDaddy: \n" + aiGeneratedContent, false);
-                    updateButton.Enabled = true; // Enable the Update button
+                    copyButton.Enabled = true; // Enable the Update button
                 }
                 else
                 {
@@ -106,7 +110,7 @@ namespace ReadMeDaddy
             {
                 MessageBox.Show("Error processing request: " + ex.Message, "Processing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 AppendTextToChat("ReadMeDaddy: \nError: " + ex.Message, false);
-                updateButton.Enabled = false;
+                copyButton.Enabled = false;
             }
         }
 
@@ -200,6 +204,16 @@ namespace ReadMeDaddy
                     richTextBox1.AppendText(line + "\n");
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SettingsButton_Click(object sender, EventArgs e)
+        {
+            settingsForm.Show();
         }
     }
 }

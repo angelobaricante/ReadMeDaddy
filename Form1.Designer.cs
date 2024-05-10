@@ -34,9 +34,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.selectFileButton = new System.Windows.Forms.Button();
-            this.updateButton = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.copyButton = new System.Windows.Forms.Button();
+            this.selectFileButton = new System.Windows.Forms.Button();
+            this.cleanButton = new System.Windows.Forms.Button();
+            this.settingsButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,6 +117,34 @@
             this.panel1.Size = new System.Drawing.Size(752, 45);
             this.panel1.TabIndex = 8;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.ForeColor = System.Drawing.Color.White;
+            this.richTextBox1.Location = new System.Drawing.Point(85, 142);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(920, 371);
+            this.richTextBox1.TabIndex = 9;
+            this.richTextBox1.Text = "";
+            // 
+            // copyButton
+            // 
+            this.copyButton.BackColor = System.Drawing.Color.Transparent;
+            this.copyButton.BackgroundImage = global::AIFileAssistant.Properties.Resources.copy_icon;
+            this.copyButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.copyButton.FlatAppearance.BorderSize = 0;
+            this.copyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.copyButton.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.copyButton.ForeColor = System.Drawing.Color.White;
+            this.copyButton.Location = new System.Drawing.Point(980, 110);
+            this.copyButton.Margin = new System.Windows.Forms.Padding(4);
+            this.copyButton.Name = "copyButton";
+            this.copyButton.Size = new System.Drawing.Size(25, 25);
+            this.copyButton.TabIndex = 1;
+            this.copyButton.UseVisualStyleBackColor = false;
+            this.copyButton.Click += new System.EventHandler(this.UpdateButton_Click);
+            // 
             // selectFileButton
             // 
             this.selectFileButton.BackColor = System.Drawing.Color.Transparent;
@@ -132,33 +162,38 @@
             this.selectFileButton.UseVisualStyleBackColor = false;
             this.selectFileButton.Click += new System.EventHandler(this.SelectFileButton_Click);
             // 
-            // updateButton
+            // cleanButton
             // 
-            this.updateButton.BackColor = System.Drawing.Color.Transparent;
-            this.updateButton.BackgroundImage = global::AIFileAssistant.Properties.Resources.modify_icon;
-            this.updateButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.updateButton.FlatAppearance.BorderSize = 0;
-            this.updateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.updateButton.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.updateButton.ForeColor = System.Drawing.Color.White;
-            this.updateButton.Location = new System.Drawing.Point(971, 151);
-            this.updateButton.Margin = new System.Windows.Forms.Padding(4);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(25, 25);
-            this.updateButton.TabIndex = 1;
-            this.updateButton.UseVisualStyleBackColor = false;
-            this.updateButton.Click += new System.EventHandler(this.UpdateButton_Click);
+            this.cleanButton.BackColor = System.Drawing.Color.Transparent;
+            this.cleanButton.BackgroundImage = global::AIFileAssistant.Properties.Resources.clean_icon;
+            this.cleanButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.cleanButton.FlatAppearance.BorderSize = 0;
+            this.cleanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cleanButton.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cleanButton.ForeColor = System.Drawing.Color.White;
+            this.cleanButton.Location = new System.Drawing.Point(953, 110);
+            this.cleanButton.Margin = new System.Windows.Forms.Padding(4);
+            this.cleanButton.Name = "cleanButton";
+            this.cleanButton.Size = new System.Drawing.Size(25, 25);
+            this.cleanButton.TabIndex = 10;
+            this.cleanButton.UseVisualStyleBackColor = false;
+            this.cleanButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // richTextBox1
+            // settingsButton
             // 
-            this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.richTextBox1.ForeColor = System.Drawing.Color.White;
-            this.richTextBox1.Location = new System.Drawing.Point(85, 142);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(920, 371);
-            this.richTextBox1.TabIndex = 9;
-            this.richTextBox1.Text = "";
+            this.settingsButton.BackColor = System.Drawing.Color.Transparent;
+            this.settingsButton.BackgroundImage = global::AIFileAssistant.Properties.Resources.settings_icon;
+            this.settingsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.settingsButton.FlatAppearance.BorderSize = 0;
+            this.settingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.settingsButton.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.settingsButton.ForeColor = System.Drawing.Color.White;
+            this.settingsButton.Location = new System.Drawing.Point(1024, 27);
+            this.settingsButton.Margin = new System.Windows.Forms.Padding(4);
+            this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Size = new System.Drawing.Size(40, 42);
+            this.settingsButton.TabIndex = 11;
+            this.settingsButton.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -166,7 +201,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
             this.ClientSize = new System.Drawing.Size(1088, 650);
-            this.Controls.Add(this.updateButton);
+            this.Controls.Add(this.settingsButton);
+            this.Controls.Add(this.cleanButton);
+            this.Controls.Add(this.copyButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.processButton);
@@ -191,11 +228,13 @@
         private System.Windows.Forms.Label fileLabel;
         private System.Windows.Forms.Button processButton;
         private System.Windows.Forms.TextBox taskInputTextBox;
-        private System.Windows.Forms.Button updateButton;
+        private System.Windows.Forms.Button copyButton;
         private System.Windows.Forms.Button selectFileButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button cleanButton;
+        private System.Windows.Forms.Button settingsButton;
     }
 }
