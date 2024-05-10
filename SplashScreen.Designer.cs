@@ -47,17 +47,17 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.panel2);
             this.panel1.ForeColor = System.Drawing.SystemColors.Control;
-            this.panel1.Location = new System.Drawing.Point(350, 456);
+            this.panel1.Location = new System.Drawing.Point(350, 442);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(393, 48);
+            this.panel1.Size = new System.Drawing.Size(393, 24);
             this.panel1.TabIndex = 0;
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(188)))), ((int)(((byte)(156)))));
             this.panel2.Location = new System.Drawing.Point(3, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(23, 38);
+            this.panel2.Size = new System.Drawing.Size(23, 14);
             this.panel2.TabIndex = 0;
             // 
             // SplashScreen
