@@ -90,10 +90,28 @@ namespace ReadMeDaddy
         {
             using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
             {
-                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
-                return string.Join(Environment.NewLine, worksheet.Cells);
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // Assuming reading from the first worksheet
+                StringBuilder sb = new StringBuilder();
+
+                // Iterate over the rows and columns
+                for (int rowNum = worksheet.Dimension.Start.Row; rowNum <= worksheet.Dimension.End.Row; rowNum++)
+                {
+                    for (int colNum = worksheet.Dimension.Start.Column; colNum <= worksheet.Dimension.End.Column; colNum++)
+                    {
+                        // Get the cell value
+                        var cell = worksheet.Cells[rowNum, colNum];
+                        if (cell.Value != null)
+                        {
+                            sb.Append(cell.Text + " "); // Append the text representation of the cell
+                        }
+                    }
+                    sb.AppendLine(); // Add a newline after each row
+                }
+
+                return sb.ToString();
             }
         }
+
 
         // Method to read PowerPoint (.pptx) files.
         private static string ReadPowerPoint(string filePath)
