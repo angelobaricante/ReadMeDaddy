@@ -88,6 +88,9 @@ namespace ReadMeDaddy
         // Method to read Excel (.xlsx) files.
         private static string ReadExcel(string filePath)
         {
+            // Set the license context for EPPlus
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
             using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
             {
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // Assuming reading from the first worksheet
