@@ -38,6 +38,7 @@ namespace ReadMeDaddy
             apiHandler = new ApiHandler(apiKey); // Ensure API key security
         }
 
+        // sample
         // Event handler for clearButton
         private void ClearButton_Click(object sender, EventArgs e)
         {
