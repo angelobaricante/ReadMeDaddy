@@ -41,26 +41,6 @@ namespace ReadMeDaddy
             }
         }
 
-        // Method to append text to a .txt file only.
-        public static void AppendTextToFile(string filePath, string content)
-        {
-            try
-            {
-                if (Path.GetExtension(filePath).ToLower() == ".txt")
-                {
-                    File.AppendAllText(filePath, "\n" + content);
-                }
-                else
-                {
-                    throw new InvalidOperationException("Unsupported file format. Only .txt files can be updated.");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Failed to append text to file: {ex.Message}");
-            }
-        }
-
         // Method to scan supported files (.xlsx, .pptx, .docx, .pdf, .csv)
         public static string ScanFile(string filePath)
         {

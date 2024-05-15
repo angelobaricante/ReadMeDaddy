@@ -35,10 +35,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.selectFileButton = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.copyButton = new System.Windows.Forms.Button();
-            this.selectFileButton = new System.Windows.Forms.Button();
-            this.cleanButton = new System.Windows.Forms.Button();
+            this.clearButton = new System.Windows.Forms.Button();
             this.settingsButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -118,6 +118,23 @@
             this.panel1.Size = new System.Drawing.Size(752, 45);
             this.panel1.TabIndex = 8;
             // 
+            // selectFileButton
+            // 
+            this.selectFileButton.BackColor = System.Drawing.Color.Transparent;
+            this.selectFileButton.BackgroundImage = global::AIFileAssistant.Properties.Resources.attach_file_icon;
+            this.selectFileButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.selectFileButton.FlatAppearance.BorderSize = 0;
+            this.selectFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.selectFileButton.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectFileButton.ForeColor = System.Drawing.Color.White;
+            this.selectFileButton.Location = new System.Drawing.Point(10, 8);
+            this.selectFileButton.Margin = new System.Windows.Forms.Padding(4);
+            this.selectFileButton.Name = "selectFileButton";
+            this.selectFileButton.Size = new System.Drawing.Size(25, 25);
+            this.selectFileButton.TabIndex = 0;
+            this.selectFileButton.UseVisualStyleBackColor = false;
+            this.selectFileButton.Click += new System.EventHandler(this.SelectFileButton_Click);
+            // 
             // richTextBox1
             // 
             this.richTextBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
@@ -147,38 +164,21 @@
             this.copyButton.UseVisualStyleBackColor = false;
             this.copyButton.Click += new System.EventHandler(this.UpdateButton_Click);
             // 
-            // selectFileButton
+            // clearButton
             // 
-            this.selectFileButton.BackColor = System.Drawing.Color.Transparent;
-            this.selectFileButton.BackgroundImage = global::AIFileAssistant.Properties.Resources.attach_file_icon;
-            this.selectFileButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.selectFileButton.FlatAppearance.BorderSize = 0;
-            this.selectFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.selectFileButton.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectFileButton.ForeColor = System.Drawing.Color.White;
-            this.selectFileButton.Location = new System.Drawing.Point(10, 8);
-            this.selectFileButton.Margin = new System.Windows.Forms.Padding(4);
-            this.selectFileButton.Name = "selectFileButton";
-            this.selectFileButton.Size = new System.Drawing.Size(25, 25);
-            this.selectFileButton.TabIndex = 0;
-            this.selectFileButton.UseVisualStyleBackColor = false;
-            this.selectFileButton.Click += new System.EventHandler(this.SelectFileButton_Click);
-            // 
-            // cleanButton
-            // 
-            this.cleanButton.BackColor = System.Drawing.Color.Transparent;
-            this.cleanButton.BackgroundImage = global::AIFileAssistant.Properties.Resources.clean_icon;
-            this.cleanButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.cleanButton.FlatAppearance.BorderSize = 0;
-            this.cleanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cleanButton.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cleanButton.ForeColor = System.Drawing.Color.White;
-            this.cleanButton.Location = new System.Drawing.Point(949, 110);
-            this.cleanButton.Margin = new System.Windows.Forms.Padding(4);
-            this.cleanButton.Name = "cleanButton";
-            this.cleanButton.Size = new System.Drawing.Size(25, 25);
-            this.cleanButton.TabIndex = 10;
-            this.cleanButton.UseVisualStyleBackColor = false;
+            this.clearButton.BackColor = System.Drawing.Color.Transparent;
+            this.clearButton.BackgroundImage = global::AIFileAssistant.Properties.Resources.clean_icon;
+            this.clearButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.clearButton.FlatAppearance.BorderSize = 0;
+            this.clearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clearButton.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.clearButton.ForeColor = System.Drawing.Color.White;
+            this.clearButton.Location = new System.Drawing.Point(949, 110);
+            this.clearButton.Margin = new System.Windows.Forms.Padding(4);
+            this.clearButton.Name = "clearButton";
+            this.clearButton.Size = new System.Drawing.Size(25, 25);
+            this.clearButton.TabIndex = 10;
+            this.clearButton.UseVisualStyleBackColor = false;
             // 
             // settingsButton
             // 
@@ -189,10 +189,10 @@
             this.settingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.settingsButton.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.settingsButton.ForeColor = System.Drawing.Color.White;
-            this.settingsButton.Location = new System.Drawing.Point(1035, 13);
+            this.settingsButton.Location = new System.Drawing.Point(1045, 13);
             this.settingsButton.Margin = new System.Windows.Forms.Padding(4);
             this.settingsButton.Name = "settingsButton";
-            this.settingsButton.Size = new System.Drawing.Size(40, 43);
+            this.settingsButton.Size = new System.Drawing.Size(30, 30);
             this.settingsButton.TabIndex = 11;
             this.settingsButton.UseVisualStyleBackColor = false;
             // 
@@ -203,7 +203,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(23)))), ((int)(((byte)(23)))));
             this.ClientSize = new System.Drawing.Size(1088, 650);
             this.Controls.Add(this.settingsButton);
-            this.Controls.Add(this.cleanButton);
+            this.Controls.Add(this.clearButton);
             this.Controls.Add(this.copyButton);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -237,7 +237,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button cleanButton;
+        private System.Windows.Forms.Button clearButton;
         private System.Windows.Forms.Button settingsButton;
     }
 }

@@ -21,7 +21,14 @@ namespace ReadMeDaddy
             InitializeComponent();
             InitializeRichTextBox();
             form2 = new Form2();
+
+            // Existing event handler subscriptions
             settingsButton.Click += SettingsButton_Click;
+
+            // New event handler subscriptions for clearButton and copyButton
+            clearButton.Click += ClearButton_Click;
+            copyButton.Click += CopyButton_Click;
+
             var apiKey = LoadApiKey();
             if (string.IsNullOrEmpty(apiKey))
             {
@@ -29,6 +36,53 @@ namespace ReadMeDaddy
                 this.Close(); // Optionally close the application if API key is not found
             }
             apiHandler = new ApiHandler(apiKey); // Ensure API key security
+        }
+
+        // Event handler for clearButton
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            richTextBox1.Clear();
+        }
+
+        // Event handler for copyButton
+        private void CopyButton_Click(object sender, EventArgs e)
+        {
+            if (richTextBox1.TextLength > 0)
+            {
+                // Find the last occurrence of "ReadMeDaddy:"
+                string fullText = richTextBox1.Text;
+                int lastIndex = fullText.LastIndexOf("ReadMeDaddy:");
+
+                if (lastIndex != -1)
+                {
+                    // Extract the message after "ReadMeDaddy:"
+                    string message = fullText.Substring(lastIndex + "ReadMeDaddy:".Length).Trim();
+                    if (!string.IsNullOrEmpty(message))
+                    {
+                        Clipboard.SetText(message);
+                        MessageBox.Show("Message copied to clipboard successfully.", "Copy Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("The last message from ReadMeDaddy is empty.", "Copy Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("No message from ReadMeDaddy found.", "Copy Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            else
+            {
+                MessageBox.Show("The text box is empty.", "Copy Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+
+
+
+        private void UpdateButton_Click(object sender, EventArgs e)
+        {
         }
 
         private string LoadApiKey()
@@ -93,38 +147,47 @@ namespace ReadMeDaddy
 
             taskInputTextBox.Clear();  // Clear the input box after sending the message
 
+            // Introduce a delay before showing the typing message
+            await Task.Delay(300);
+
+            // Display typing message
+            AppendTextToChat("ReadMeDaddy is typing...", false);
+
             try
             {
                 string aiGeneratedContent = await apiHandler.SendRequestToOpenAI(fileContent, prompt);
                 if (!string.IsNullOrEmpty(aiGeneratedContent))
                 {
-                    AppendTextToChat("ReadMeDaddy: \n" + aiGeneratedContent, false);
+                    // Replace typing message with the actual response
+                    ReplaceLastMessage("ReadMeDaddy: \n" + aiGeneratedContent);
                     copyButton.Enabled = true; // Enable the Update button
                 }
                 else
                 {
                     MessageBox.Show("Received empty response from API.", "API Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ReplaceLastMessage("ReadMeDaddy: \nError: Received empty response from API.");
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error processing request: " + ex.Message, "Processing Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                AppendTextToChat("ReadMeDaddy: \nError: " + ex.Message, false);
+                ReplaceLastMessage("ReadMeDaddy: \nError: " + ex.Message);
                 copyButton.Enabled = false;
             }
         }
 
-        private void UpdateButton_Click(object sender, EventArgs e)
+
+        private void ReplaceLastMessage(string newMessage)
         {
-            try
+            string typingMessage = "ReadMeDaddy is typing...";
+            int typingMessageIndex = richTextBox1.Text.LastIndexOf(typingMessage);
+
+            if (typingMessageIndex != -1)
             {
-                // Append the last interaction to the file
-                FileOperations.AppendTextToFile(filePath, richTextBox1.Text);
-                MessageBox.Show("Content successfully updated to file.", "Update Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                richTextBox1.Select(typingMessageIndex, typingMessage.Length);
+                richTextBox1.SelectedText = newMessage + "\n";
+                richTextBox1.SelectionColor = Color.White;
+                richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Regular);
             }
         }
 
@@ -160,6 +223,49 @@ namespace ReadMeDaddy
             lastMessageWasUser = isUser;  // Update the flag to reflect the sender of the current message
         }
 
+        private void ApplyCustomFormatting(string text, bool isUser)
+        {
+            // Split the text into lines while preserving newline characters
+            string[] lines = text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+            bool lastLineWasEmpty = false; // Track if the last processed line was empty to add extra space
+
+            foreach (string line in lines)
+            {
+                richTextBox1.SelectionStart = richTextBox1.TextLength;
+                richTextBox1.SelectionLength = 0;
+
+                if (line.StartsWith("ReadMeDaddy:") || line.StartsWith("You:"))
+                {
+                    int colonIndex = line.IndexOf(':');
+                    if (colonIndex != -1)
+                    {
+                        richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Bold);
+                        richTextBox1.AppendText(line.Substring(0, colonIndex + 1) + " ");
+                        richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Regular);
+                        richTextBox1.AppendText(line.Substring(colonIndex + 1).Trim() + "\n");
+                        lastLineWasEmpty = false; // Reset as this is a new section
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrWhiteSpace(line))
+                    {
+                        if (!lastLineWasEmpty)
+                        {
+                            richTextBox1.AppendText("\n"); // Add an extra newline for better readability
+                            lastLineWasEmpty = true;
+                        }
+                    }
+                    else
+                    {
+                        richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Regular);
+                        richTextBox1.AppendText(line + "\n");
+                        lastLineWasEmpty = false; // Reset as this is content
+                    }
+                }
+            }
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -179,37 +285,15 @@ namespace ReadMeDaddy
             richTextBox1.BackColor = Color.FromArgb(33, 33, 33);
         }
 
-        private void ApplyCustomFormatting(string text, bool isUser)
-        {
-            string[] lines = text.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string line in lines)
-            {
-                richTextBox1.SelectionStart = richTextBox1.TextLength;
-                richTextBox1.SelectionLength = 0;
-
-                if (line.StartsWith("ReadMeDaddy:") || line.StartsWith("You:"))
-                {
-                    int colonIndex = line.IndexOf(':');
-                    if (colonIndex != -1)
-                    {
-                        richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Bold);
-                        richTextBox1.AppendText(line.Substring(0, colonIndex + 1) + " ");
-                        richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Regular);
-                        richTextBox1.AppendText(line.Substring(colonIndex + 1) + "\n");
-                    }
-                }
-                else
-                {
-                    richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Regular);
-                    richTextBox1.AppendText(line + "\n");
-                }
-            }
-        }
-
         private void SettingsButton_Click(object sender, EventArgs e)
         {
+            if (form2 == null || form2.IsDisposed)
+            {
+                form2 = new Form2();
+            }
             form2.Show();
         }
+
 
         private void Form1_Load_1(object sender, EventArgs e)
         {

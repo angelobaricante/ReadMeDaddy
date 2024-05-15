@@ -32,5 +32,10 @@ namespace AIFileAssistant
         {
             this.Close();
         }
+
+        private void apiKeyStorage_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
