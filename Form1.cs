@@ -20,7 +20,6 @@ namespace ReadMeDaddy
         {
             InitializeComponent();
             InitializeRichTextBox();
-            form2 = new Form2();
 
             // Existing event handler subscriptions
             settingsButton.Click += SettingsButton_Click;
@@ -29,14 +28,22 @@ namespace ReadMeDaddy
             clearButton.Click += ClearButton_Click;
             copyButton.Click += CopyButton_Click;
 
-            var apiKey = LoadApiKey();
-            if (string.IsNullOrEmpty(apiKey))
+            // Show API key input form
+            using (var apiKeyForm = new Form2())
             {
-                MessageBox.Show("API key is not configured properly.", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close(); // Optionally close the application if API key is not found
+                if (apiKeyForm.ShowDialog() == DialogResult.OK)
+                {
+                    var apiKey = apiKeyForm.ApiKey;
+                    apiHandler = new ApiHandler(apiKey); // Initialize with user-provided API key
+                }
+                else
+                {
+                    MessageBox.Show("API key is required to use this application.", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close(); // Optionally close the application if API key is not provided
+                }
             }
-            apiHandler = new ApiHandler(apiKey); // Ensure API key security
         }
+
 
         // Event handler for clearButton
         private void ClearButton_Click(object sender, EventArgs e)
@@ -287,12 +294,16 @@ namespace ReadMeDaddy
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            if (form2 == null || form2.IsDisposed)
+            using (var apiKeyForm = new Form2())
             {
-                form2 = new Form2();
+                if (apiKeyForm.ShowDialog() == DialogResult.OK)
+                {
+                    var apiKey = apiKeyForm.ApiKey;
+                    apiHandler = new ApiHandler(apiKey); // Reinitialize with new user-provided API key
+                }
             }
-            form2.Show();
         }
+
 
 
         private void Form1_Load_1(object sender, EventArgs e)
