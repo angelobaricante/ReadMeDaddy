@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  Manage and interact with your files using AI-powered commands.
+  Interact with your files using AI prompts.
 </p>
 
 <p align="center">
