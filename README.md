@@ -14,7 +14,7 @@
 
 <p align="center">
   <a href="https://github.com/angelobaricante/ReadMeDaddy"><img alt="Programming language" src="https://img.shields.io/badge/language-C%23-blue?logo=csharp&logoColor=blue"></a>
-  <a href="https://github.com/angelobaricante/ReadMeDaddy"><img alt="Contributors" src="https://img.shields.io/badge/contributors-5-blue"></a>
+  <a href="https://github.com/angelobaricante/ReadMeDaddy"><img alt="Contributors" src="https://img.shields.io/badge/contributors-4-blue"></a>
   <a href="https://github.com/angelobaricante/ReadMeDaddy/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="License"></a>
 </p>
 
