@@ -88,18 +88,16 @@ namespace ReadMeDaddy
 
         private string LoadApiKey()
         {
-            try
+            string apiKey = Environment.GetEnvironmentVariable("API_KEY");
+            if (string.IsNullOrEmpty(apiKey))
             {
-                var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\config.json");
-                var json = File.ReadAllText(path);
-                return JObject.Parse(json)["ApiKey"].ToString();
+                MessageBox.Show("API key is not configured properly. Please ensure the setup script has been run.", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Failed to read API Key: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
+            return apiKey;
         }
+
+
+
 
         private void SelectFileButton_Click(object sender, EventArgs e)
         {
