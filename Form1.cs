@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using AIFileAssistant;
-using Newtonsoft.Json.Linq; // Ensure Newtonsoft.Json is installed via NuGet
+using Newtonsoft.Json.Linq;
 
 namespace ReadMeDaddy
 {
     public partial class Form1 : Form
     {
         private ApiHandler apiHandler;
-        private string filePath; // To store the path of the file selected by the user
-        private string fileContent; // To store the content of the file
+        private string filePath; 
+        private string fileContent; 
         private Form2 form2;
 
         public Form1()
@@ -22,10 +22,8 @@ namespace ReadMeDaddy
             InitializeRichTextBox();
             form2 = new Form2();
 
-            // Existing event handler subscriptions
             settingsButton.Click += SettingsButton_Click;
 
-            // New event handler subscriptions for clearButton and copyButton
             clearButton.Click += ClearButton_Click;
             copyButton.Click += CopyButton_Click;
 
@@ -33,30 +31,25 @@ namespace ReadMeDaddy
             if (string.IsNullOrEmpty(apiKey))
             {
                 MessageBox.Show("API key is not configured properly.", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close(); // Optionally close the application if API key is not found
+                this.Close(); 
             }
-            apiHandler = new ApiHandler(apiKey); // Ensure API key security
+            apiHandler = new ApiHandler(apiKey);
         }
 
-        // sample
-        // Event handler for clearButton
         private void ClearButton_Click(object sender, EventArgs e)
         {
             richTextBox1.Clear();
         }
 
-        // Event handler for copyButton
         private void CopyButton_Click(object sender, EventArgs e)
         {
             if (richTextBox1.TextLength > 0)
             {
-                // Find the last occurrence of "ReadMeDaddy:"
                 string fullText = richTextBox1.Text;
                 int lastIndex = fullText.LastIndexOf("ReadMeDaddy:");
 
                 if (lastIndex != -1)
                 {
-                    // Extract the message after "ReadMeDaddy:"
                     string message = fullText.Substring(lastIndex + "ReadMeDaddy:".Length).Trim();
                     if (!string.IsNullOrEmpty(message))
                     {
@@ -104,15 +97,15 @@ namespace ReadMeDaddy
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = "c:\\",
-                Filter = "All files (*.*)|*.*|Text files (*.txt)|*.txt", // Changed the order to accept all files by default
-                FilterIndex = 1, // Default filter will be "All files"
+                Filter = "All files (*.*)|*.*|Text files (*.txt)|*.txt", 
+                FilterIndex = 1, 
                 RestoreDirectory = true
             };
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 filePath = openFileDialog.FileName;
-                fileLabel.Text = filePath; // Display selected file path
+                fileLabel.Text = filePath; 
                 fileContent = FileOperations.ReadFile(filePath);
                 if (fileContent.StartsWith("Error reading file:") || fileContent.StartsWith("Unsupported file format."))
                 {
@@ -121,7 +114,7 @@ namespace ReadMeDaddy
                 }
                 else
                 {
-                    processButton.Enabled = true; // Enable the Process button
+                    processButton.Enabled = true;
                 }
             }
         }
@@ -142,15 +135,12 @@ namespace ReadMeDaddy
                 return;
             }
 
-            // Display user message in the chat interface
             AppendTextToChat("You: \n" + prompt, true);
 
-            taskInputTextBox.Clear();  // Clear the input box after sending the message
+            taskInputTextBox.Clear();  
 
-            // Introduce a delay before showing the typing message
             await Task.Delay(300);
 
-            // Display typing message
             AppendTextToChat("ReadMeDaddy is typing...", false);
 
             try
@@ -158,9 +148,8 @@ namespace ReadMeDaddy
                 string aiGeneratedContent = await apiHandler.SendRequestToOpenAI(fileContent, prompt);
                 if (!string.IsNullOrEmpty(aiGeneratedContent))
                 {
-                    // Replace typing message with the actual response
                     ReplaceLastMessage("ReadMeDaddy: \n" + aiGeneratedContent);
-                    copyButton.Enabled = true; // Enable the Update button
+                    copyButton.Enabled = true; 
                 }
                 else
                 {
@@ -191,43 +180,40 @@ namespace ReadMeDaddy
             }
         }
 
-        private bool lastMessageWasUser = true;  // A flag to track who sent the last message
+        private bool lastMessageWasUser = true;  
 
         private void AppendTextToChat(string text, bool isUser)
         {
             richTextBox1.SelectionStart = richTextBox1.TextLength;
             richTextBox1.SelectionLength = 0;
 
-            // Add an extra newline if the last message was not from the same sender to space out entries
             if (lastMessageWasUser != isUser)
             {
                 richTextBox1.AppendText("\n");
             }
 
-            // Setting the color explicitly based on whether it's the user or the API
             if (isUser)
             {
-                richTextBox1.SelectionColor = Color.FromArgb(26, 188, 156); // Teal color for the user
+                richTextBox1.SelectionColor = Color.FromArgb(26, 188, 156); 
             }
             else
             {
-                richTextBox1.SelectionColor = Color.White; // White color for the API
+                richTextBox1.SelectionColor = Color.White; 
             }
 
-            richTextBox1.SelectionIndent = isUser ? 0 : 50;  // Indent API messages for right alignment
-
+            richTextBox1.SelectionIndent = isUser ? 0 : 50; 
             ApplyCustomFormatting(text, isUser);
 
-            richTextBox1.ScrollToCaret();  // Ensure the latest message is visible
+            richTextBox1.ScrollToCaret();  
 
-            lastMessageWasUser = isUser;  // Update the flag to reflect the sender of the current message
+            lastMessageWasUser = isUser;  
         }
 
         private void ApplyCustomFormatting(string text, bool isUser)
         {
-            // Split the text into lines while preserving newline characters
+            
             string[] lines = text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
-            bool lastLineWasEmpty = false; // Track if the last processed line was empty to add extra space
+            bool lastLineWasEmpty = false; 
 
             foreach (string line in lines)
             {
@@ -243,7 +229,7 @@ namespace ReadMeDaddy
                         richTextBox1.AppendText(line.Substring(0, colonIndex + 1) + " ");
                         richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Regular);
                         richTextBox1.AppendText(line.Substring(colonIndex + 1).Trim() + "\n");
-                        lastLineWasEmpty = false; // Reset as this is a new section
+                        lastLineWasEmpty = false; 
                     }
                 }
                 else
@@ -252,7 +238,7 @@ namespace ReadMeDaddy
                     {
                         if (!lastLineWasEmpty)
                         {
-                            richTextBox1.AppendText("\n"); // Add an extra newline for better readability
+                            richTextBox1.AppendText("\n"); 
                             lastLineWasEmpty = true;
                         }
                     }
@@ -260,7 +246,7 @@ namespace ReadMeDaddy
                     {
                         richTextBox1.SelectionFont = new Font(richTextBox1.Font, FontStyle.Regular);
                         richTextBox1.AppendText(line + "\n");
-                        lastLineWasEmpty = false; // Reset as this is content
+                        lastLineWasEmpty = false; 
                     }
                 }
             }
@@ -269,12 +255,12 @@ namespace ReadMeDaddy
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Add any initialization code here if needed
+
         }
 
         private void taskInputTextBox_TextChanged(object sender, EventArgs e)
         {
-            // Add any code that should run when text changes in taskInputTextBox
+
         }
 
         private void InitializeRichTextBox()

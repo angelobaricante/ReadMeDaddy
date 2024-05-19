@@ -30,7 +30,7 @@ namespace ReadMeDaddy
                     case ".pdf":
                         return ReadPdf(filePath);
                     case ".csv":
-                        return ReadCsv(filePath); // Added support for CSV files
+                        return ReadCsv(filePath); 
                     default:
                         return "Unsupported file format.";
                 }
@@ -50,7 +50,7 @@ namespace ReadMeDaddy
 
                 if (fileExtension == ".xlsx" || fileExtension == ".pptx" ||
                     fileExtension == ".docx" || fileExtension == ".pdf" ||
-                    fileExtension == ".csv") // Added CSV to supported scanning formats
+                    fileExtension == ".csv") 
                 {
                     return $"File format {fileExtension} is supported for scanning.";
                 }
@@ -68,27 +68,24 @@ namespace ReadMeDaddy
         // Method to read Excel (.xlsx) files.
         private static string ReadExcel(string filePath)
         {
-            // Set the license context for EPPlus
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
             using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
             {
-                ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // Assuming reading from the first worksheet
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; 
                 StringBuilder sb = new StringBuilder();
 
-                // Iterate over the rows and columns
                 for (int rowNum = worksheet.Dimension.Start.Row; rowNum <= worksheet.Dimension.End.Row; rowNum++)
                 {
                     for (int colNum = worksheet.Dimension.Start.Column; colNum <= worksheet.Dimension.End.Column; colNum++)
                     {
-                        // Get the cell value
                         var cell = worksheet.Cells[rowNum, colNum];
                         if (cell.Value != null)
                         {
-                            sb.Append(cell.Text + " "); // Append the text representation of the cell
+                            sb.Append(cell.Text + " ");
                         }
                     }
-                    sb.AppendLine(); // Add a newline after each row
+                    sb.AppendLine(); 
                 }
 
                 return sb.ToString();
