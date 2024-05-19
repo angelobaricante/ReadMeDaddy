@@ -23,9 +23,9 @@
 ## Table of Contents
 * [What is ReadMeDaddy](#what-is-readmedaddy)
 * [Features](#features)
-* [Installation](#installation)
+* [Developer Installation](#developer-installation)
+* [User Installation](#user-installation)
 * [Usage](#usage)
-* [License](#license)
 * [Authors](#authors)
 * [Acknowledgements](#acknowledgements)
 * [Contact Information](#contact-information)
@@ -44,7 +44,10 @@ ReadMeDaddy offers a range of powerful AI-powered features designed to enhance f
 4. **Text Simplification**: Simplify, rewrite, and format text in various document types.
 5. **Translation and Grammar Check**: Translate text and check grammar and spelling across all supported files.
 
-## Installation
+## Developer Installation
+To securely manage the OPEN AI API key, we use environment variables. It is VERY IMPORTANT to follow the [User Installation](#user-installation) instructions to install the app, as you CANNOT RUN the app without the API key. This process will automatically add the API key to your environment variables.
+
+## User Installation
 
 ### Prerequisites
 - Windows 10 or later
@@ -68,9 +71,6 @@ For a step-by-step guide on how to install ReadMeDaddy, watch our [installation 
 4. **Process**: Click the `Process` button to let the AI handle your request.
 5. **Review Results**: View the output in the application’s interface and use the `Copy` or `Clear` buttons as needed.
 
-## License
-ReadMeDaddy is licensed under the MIT License. See the [LICENSE](https://github.com/angelobaricante/ReadMeDaddy/blob/main/LICENSE) file for details.
-
 ## Authors
 
 ReadMeDaddy was developed by:
@@ -84,7 +84,7 @@ Feel free to reach out to the authors with any questions, suggestions, or collab
 
 ## Acknowledgements
 
-We would like to extend our sincere gratitude to our professor, **Francis Jesmar Montalbo**, for providing us with the opportunity to showcase our talents and create this innovative project. His guidance and support have been invaluable throughout the development process. You can find his GitHub profile [here](https://github.com/francismontalbo).
+We would like to extend our sincere gratitude to our professor, **Ms. Fatima Marie P. Agdon**, for providing us with the opportunity to showcase our talents and create this innovative project. Her guidance and support have been invaluable throughout the development process.
 
 We would also like to express our gratitude to the developers and maintainers of the libraries and APIs used in this project, as well as the open-source community for their support and inspiration.
 
