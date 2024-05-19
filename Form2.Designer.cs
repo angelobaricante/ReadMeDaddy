@@ -1,4 +1,4 @@
-﻿namespace AIFileAssistant
+﻿namespace ReadMeDaddy
 {
     partial class Form2
     {
@@ -75,7 +75,7 @@
             // exitButton
             // 
             this.exitButton.BackColor = System.Drawing.Color.Transparent;
-            this.exitButton.BackgroundImage = global::AIFileAssistant.Properties.Resources.exit_icon;
+            this.exitButton.BackgroundImage = global::ReadMeDaddy.Properties.Resources.exit_icon;
             this.exitButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.exitButton.FlatAppearance.BorderSize = 0;
             this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
