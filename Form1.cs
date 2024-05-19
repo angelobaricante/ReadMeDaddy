@@ -106,8 +106,8 @@ namespace ReadMeDaddy
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 InitialDirectory = "c:\\",
-                Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*",
-                FilterIndex = 1,
+                Filter = "All files (*.*)|*.*|Text files (*.txt)|*.txt", // Changed the order to accept all files by default
+                FilterIndex = 1, // Default filter will be "All files"
                 RestoreDirectory = true
             };
 
@@ -127,6 +127,7 @@ namespace ReadMeDaddy
                 }
             }
         }
+
 
         private async void ProcessButton_Click(object sender, EventArgs e)
         {
