@@ -121,7 +121,7 @@
             // selectFileButton
             // 
             this.selectFileButton.BackColor = System.Drawing.Color.Transparent;
-            this.selectFileButton.BackgroundImage = global::AIFileAssistant.Properties.Resources.attach_file_icon;
+            this.selectFileButton.BackgroundImage = global::ReadMeDaddy.Properties.Resources.attach_file_icon;
             this.selectFileButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.selectFileButton.FlatAppearance.BorderSize = 0;
             this.selectFileButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -150,7 +150,7 @@
             // copyButton
             // 
             this.copyButton.BackColor = System.Drawing.Color.Transparent;
-            this.copyButton.BackgroundImage = global::AIFileAssistant.Properties.Resources.copy_icon;
+            this.copyButton.BackgroundImage = global::ReadMeDaddy.Properties.Resources.copy_icon;
             this.copyButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.copyButton.FlatAppearance.BorderSize = 0;
             this.copyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -167,7 +167,7 @@
             // clearButton
             // 
             this.clearButton.BackColor = System.Drawing.Color.Transparent;
-            this.clearButton.BackgroundImage = global::AIFileAssistant.Properties.Resources.clean_icon;
+            this.clearButton.BackgroundImage = global::ReadMeDaddy.Properties.Resources.clean_icon;
             this.clearButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.clearButton.FlatAppearance.BorderSize = 0;
             this.clearButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -183,7 +183,7 @@
             // settingsButton
             // 
             this.settingsButton.BackColor = System.Drawing.Color.Transparent;
-            this.settingsButton.BackgroundImage = global::AIFileAssistant.Properties.Resources.settings_icon;
+            this.settingsButton.BackgroundImage = global::ReadMeDaddy.Properties.Resources.settings_icon;
             this.settingsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.settingsButton.FlatAppearance.BorderSize = 0;
             this.settingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
