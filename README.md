@@ -1,8 +1,8 @@
 <p align="center">
   <a href="https://github.com/angelobaricante/ReadMeDaddy" target="_blank">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/angelobaricante/ReadMeDaddy/blob/master/assets/read_me_daddy_readme_banner.png">
-      <source media="(prefers-color-scheme: light)" srcset="https://github.com/angelobaricante/ReadMeDaddy/blob/master/assets/read_me_daddy_readme_banner.png">
+      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/angelobaricante/ReadMeDaddy/blob/master/assets/read_me_daddy_readme_banner_dark.png">
+      <source media="(prefers-color-scheme: light)" srcset="https://github.com/angelobaricante/ReadMeDaddy/blob/master/assets/read_me_daddy_readme_banner_dark.png">
       <img alt="ReadMeDaddy" src="https://github.com/angelobaricante/ReadMeDaddy/blob/master/assets/read_me_daddy_readme_banner.png" height="120" style="max-width: 100%;">
     </picture>
   </a>
