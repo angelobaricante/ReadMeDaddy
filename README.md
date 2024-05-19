@@ -31,9 +31,9 @@
 * [Contact Information](#contact-information)
 
 ## What is ReadMeDaddy
-Click on the image below to watch the "**_ReadMeDaddy: AI File Assistant Overview_**" video on YouTube. (Right click and select "Open link in new tab" to keep this page open):
+Click on the image below to watch the "**_Read Me Daddy: Instantly Summarize, Analyze, and Enhance Your Files!_**" video on YouTube. (Right click and select "Open link in new tab" to keep this page open):
 
-[![ReadMeDaddy: AI File Assistant Overview](https://i.ibb.co/z7WbVDq/ReadMeDaddy-Presentation.jpg)](https://www.youtube.com/link-to-presentation)
+[![Read Me Daddy: Instantly Summarize, Analyze, and Enhance Your Files!](https://github.com/angelobaricante/ReadMeDaddy/blob/master/assets/read_me_daddy_yt_banner.png)](https://youtu.be/3JI8U4Ck9Bg)
 
 ## Features
 ReadMeDaddy offers a range of powerful AI-powered features designed to enhance file management and interaction:
