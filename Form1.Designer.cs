@@ -195,6 +195,7 @@
             this.settingsButton.Size = new System.Drawing.Size(30, 30);
             this.settingsButton.TabIndex = 11;
             this.settingsButton.UseVisualStyleBackColor = false;
+            this.settingsButton.Visible = false;
             // 
             // Form1
             // 
